@@ -12,7 +12,8 @@ void SelectionSort(int* array, int size, bool (*comparisonFcn)(int, int))
             if( comparisonFcn (array[bestIndex], array[currentIndex]) )
                 bestIndex = currentIndex;
         }
-        std::swap(array[startIndex], array[bestIndex]);
+        if( bestIndex != startIndex )
+            std::swap(array[startIndex], array[bestIndex]);
     }
 }
 
