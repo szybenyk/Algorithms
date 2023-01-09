@@ -33,7 +33,7 @@ bool evensFirst(int x, int y)
     if ( (x % 2 == 0) && !(y % 2 == 0) )
         return false;
     // if x is odd and y is even, y goes first (swap needed)
-	if (!(x % 2 == 0) && (y % 2 == 0))
+	else if (!(x % 2 == 0) && (y % 2 == 0))
 		return true;
 
     // otherwise sort in ascending order
