@@ -17,6 +17,20 @@ int binarySearch(const int* array, int target, int min, int max)
     return -1;
 }
 
+int binarySearchR(const int* array, int target, int min, int max)
+{
+    if  ( min > max )
+        return -1;
+
+    int center{ (min + max) / 2 };
+    if ( (array[center] > target) )
+        return binarySearchR(array, target, min, center - 1);
+    else if ( (array[center] < target) )
+        return binarySearchR(array, target, center + 1, max);
+    else
+        return center;
+}
+
 
 int main(int argc, char const *argv[])
 {
@@ -29,6 +43,15 @@ int main(int argc, char const *argv[])
     for ( int count{ 0 }; count < numTestValue; ++count )
     {
         int index{ binarySearch(array, testValues[count], 0, static_cast<int>(std::size(array)) - 1) };
+        if (index == expectedValues[count])
+            std::cout << "test value " << testValues[count] << " passed!\n";
+        else
+            std::cout << "test value " << testValues[count] << " failed. There's something wrong with your code!\n";
+    }
+
+    for ( int count{ 0 }; count < numTestValue; ++count )
+    {
+        int index{ binarySearchR(array, testValues[count], 0, static_cast<int>(std::size(array)) - 1) };
         if (index == expectedValues[count])
             std::cout << "test value " << testValues[count] << " passed!\n";
         else
